@@ -1,1 +1,1 @@
-# cloud-technologies-itis
+# cut-faces-from-image cloud function
