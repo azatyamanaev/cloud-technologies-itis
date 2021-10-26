@@ -70,7 +70,7 @@ def upload_images(imgs, bucket, key):
     for i in range(len(imgs)):
         img = imgs[i]
         img.save('/tmp/img.jpg')
-        name = '{pr_img}/face{num}{ext}'.format(pr_img=key[:ind], num=i+1, ext='.face')
+        name = '{pr_img}_group-photo/face{num}{ext}'.format(pr_img=key[:ind], num=i+1, ext='.face')
         names.append(name)
         with open('/tmp/img.jpg', 'rb') as img_file:
             bucket.upload_fileobj(img_file, name)
