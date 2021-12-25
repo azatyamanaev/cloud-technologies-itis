@@ -5,7 +5,7 @@
 2) Нужно создать телеграм бота
 
 ## Тестирование
-Посылать в очередь сообщения типа:
+1) Посылать в очередь сообщения типа:
 q.send_message(MessageBody = 'some text',
                 MessageAttributes={
       'string': {
@@ -17,3 +17,5 @@ q.send_message(MessageBody = 'some text',
 Один элемент массива - ключ обьекта
 
 Примечание: каждый ключ обьекта дополнительно заключен в одинарные кавычки
+
+2) Использовать приложение cloudphoto из репозитория (https://github.com/azatyamanaev/yandex-cloud-photo) и функцию cut-faces-from-image cloud function из репозитория (https://github.com/azatyamanaev/cloud-technologies-itis/tree/main/cut-faces-from-image)
