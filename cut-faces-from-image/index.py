@@ -65,12 +65,12 @@ def crop_faces(faces, data):
     return imgs
 
 def upload_images(imgs, bucket, key):
-    ind = key.rfind('.group-photo')
+    ind = key.rfind('_group-photo.jpg')
     names = []
     for i in range(len(imgs)):
         img = imgs[i]
         img.save('/tmp/img.jpg')
-        name = '{pr_img}_group-photo/face{num}{ext}'.format(pr_img=key[:ind], num=i+1, ext='.face')
+        name = '{pr_img}_group-photo/face{num}{ext}'.format(pr_img=key[:ind], num=i+1, ext='.jpg')
         names.append(name)
         with open('/tmp/img.jpg', 'rb') as img_file:
             bucket.upload_fileobj(img_file, name)
@@ -89,14 +89,16 @@ def get_mq(cfg):
     sqs = session.resource(
         service_name='sqs',
         endpoint_url='https://message-queue.api.cloud.yandex.net',
-        aws_access_key_id = key_id,
-        aws_secret_access_key = secret_key,
+        aws_access_key_id = 'rNK_Uu6hN00Zxz8MXXuB',
+        aws_secret_access_key = 'eGTFNIU4SLD1PIOjK8NIKmyBzOC6RvB3PkR_kzrG',
         region_name=region
     )
     
     return sqs
 
 def send_names_to_queue(sqs, names, key):
+
+    # q_url = 'https://message-queue.api.cloud.yandex.net/b1gij8q2i95gom12cbjb/dj6000000003pdgc033h/faces-queue'
     q = sqs.get_queue_by_name(QueueName = 'faces-queue')
     
     q.send_message(MessageBody = 'Faces from {}'.format(key),
