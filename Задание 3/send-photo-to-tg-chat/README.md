@@ -29,6 +29,7 @@ q.send_message(MessageBody = 'some text',
     })
 , где names - массив ключей обьектов(лиц людей). Пример - ["'test/2_group-photo/face1.jpg'", "'test/2_group-photo/face2.jpg'", "'test/2_group-photo/face3.jpg'", "'test/2_group-photo/face4.jpg'", "'test/2_group-photo/face5.jpg'", "'test/2_group-photo/face6.jpg'"]
 
-Один элемент массива - ключ обьекта\n
+Один элемент массива - ключ обьекта
+
 Примечание: каждый ключ обьекта дополнительно заключен в одинарные кавычки
 
