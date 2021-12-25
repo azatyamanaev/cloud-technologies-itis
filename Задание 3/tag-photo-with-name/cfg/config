@@ -1,0 +1,11 @@
+[default]
+region = ru-central1
+bucket =
+
+[aws]
+api_id =
+api_key =
+
+[telegram]
+chat_id =
+token =
