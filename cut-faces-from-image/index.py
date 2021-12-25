@@ -70,7 +70,7 @@ def upload_images(imgs, bucket, key):
     for i in range(len(imgs)):
         img = imgs[i]
         img.save('/tmp/img.jpg')
-        name = '{pr_img}/face{num}{ext}'.format(pr_img=key[:ind], num=i+1, ext='.face')
+        name = '{pr_img}_group-photo/face{num}{ext}'.format(pr_img=key[:ind], num=i+1, ext='.face')
         names.append(name)
         with open('/tmp/img.jpg', 'rb') as img_file:
             bucket.upload_fileobj(img_file, name)
@@ -96,10 +96,10 @@ def get_mq(cfg):
     
     return sqs
 
-def send_names_to_queue(sqs, names):
+def send_names_to_queue(sqs, names, key):
     q = sqs.get_queue_by_name(QueueName = 'faces-queue')
     
-    q.send_message(MessageBody = 'Object names',
+    q.send_message(MessageBody = 'Faces from {}'.format(key),
               MessageAttributes={
         'string': {
             'StringValue': str(names),
@@ -125,7 +125,7 @@ def handler(event, context):
         bucket = res.Bucket(bucket_name)
         imgs = crop_faces(faces, data)
         names = upload_images(imgs, bucket, object_name)
-        send_names_to_queue(get_mq(cfg), names)
+        send_names_to_queue(get_mq(cfg), names, object_name)
 
 
 
