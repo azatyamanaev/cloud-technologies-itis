@@ -89,16 +89,14 @@ def get_mq(cfg):
     sqs = session.resource(
         service_name='sqs',
         endpoint_url='https://message-queue.api.cloud.yandex.net',
-        aws_access_key_id = 'rNK_Uu6hN00Zxz8MXXuB',
-        aws_secret_access_key = 'eGTFNIU4SLD1PIOjK8NIKmyBzOC6RvB3PkR_kzrG',
+        aws_access_key_id = key_id,
+        aws_secret_access_key = secret_key,
         region_name=region
     )
     
     return sqs
 
 def send_names_to_queue(sqs, names, key):
-
-    # q_url = 'https://message-queue.api.cloud.yandex.net/b1gij8q2i95gom12cbjb/dj6000000003pdgc033h/faces-queue'
     q = sqs.get_queue_by_name(QueueName = 'faces-queue')
     
     q.send_message(MessageBody = 'Faces from {}'.format(key),
